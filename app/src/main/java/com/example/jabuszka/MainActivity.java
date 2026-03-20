@@ -2,6 +2,7 @@ package com.example.jabuszka;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         Button button = findViewById(R.id.button);
-        TextView czas = findViewById(R.id.textView2);
+        TextView czass = findViewById(R.id.textView2);
         TextView punkty = findViewById(R.id.textView3);
 
         ImageView izdj1 = findViewById(R.id.imageView1);
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         kasa.add(izdj8);
         kasa.add(izdj9);
 
+
+
         CountDownTimer countDownTimer1 = new CountDownTimer(1000,1000) {
             @Override
             public void onFinish() {
@@ -61,5 +64,28 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
+        button.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        czas=16;
+
+                        countDownTimer = new CountDownTimer(1000*czas, 1000) {
+                            @Override
+                            public void onFinish() {
+                                countDownTimer1.cancel();
+                            }
+
+                            @Override
+                            public void onTick(long l) {
+                                czas = (int)l/1000;
+                                czass.setText("czas: "+ czas);
+                            }
+                        };
+                        countDownTimer.start();
+                        countDownTimer1.start();
+                    }
+                }
+        );
     }
 }
