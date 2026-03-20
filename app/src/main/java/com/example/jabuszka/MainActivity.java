@@ -1,6 +1,10 @@
 package com.example.jabuszka;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,13 +12,54 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
+    CountDownTimer countDownTimer;
+    int czas = 16;
+    int punkty = 0;
+    Random losowa = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        Button button = findViewById(R.id.button);
+        TextView czas = findViewById(R.id.textView2);
+        TextView punkty = findViewById(R.id.textView3);
 
+        ImageView izdj1 = findViewById(R.id.imageView1);
+        ImageView izdj2 = findViewById(R.id.imageView2);
+        ImageView izdj3 = findViewById(R.id.imageView3);
+        ImageView izdj4 = findViewById(R.id.imageView4);
+        ImageView izdj5 = findViewById(R.id.imageView5);
+        ImageView izdj6 = findViewById(R.id.imageView6);
+        ImageView izdj7 = findViewById(R.id.imageView7);
+        ImageView izdj8 = findViewById(R.id.imageView8);
+        ImageView izdj9 = findViewById(R.id.imageView9);
+        ArrayList<ImageView> kasa = new ArrayList<>();
+        kasa.add(izdj1);
+        kasa.add(izdj2);
+        kasa.add(izdj3);
+        kasa.add(izdj4);
+        kasa.add(izdj5);
+        kasa.add(izdj6);
+        kasa.add(izdj7);
+        kasa.add(izdj8);
+        kasa.add(izdj9);
+
+        CountDownTimer countDownTimer1 = new CountDownTimer(1000,1000) {
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onTick(long l) {
+
+            }
+        };
     }
 }
