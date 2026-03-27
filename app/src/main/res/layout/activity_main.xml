@@ -6,13 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity"
+    android:background="@drawable/domek"
+    >
+
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Zbieraj kase"
+        android:text="Kradnij kase"
         android:textSize="40dp"
         android:textAlignment="center"/>
 

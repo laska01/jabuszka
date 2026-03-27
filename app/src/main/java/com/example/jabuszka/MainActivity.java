@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
             kasa.get(i).setVisibility(INVISIBLE);
         }
         if(losowy==0){
-            kasa.get(losowakasa).setImageResource(R.drawable.zlodziej);
+            kasa.get(losowakasa).setImageResource(R.drawable.police);
             bad = true;
         }
         else{
