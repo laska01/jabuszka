@@ -22,7 +22,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     CountDownTimer countDownTimer;
-    int czas = 16;
+    int czas = 10;
     int punkty1 = 0;
     Random losowa = new Random();
     boolean bad;
@@ -74,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        czas=16;
+                        czas=11;
+                        punkty.setText(String.valueOf(punkty1));
 
                         countDownTimer = new CountDownTimer(1000*czas, 1000) {
                             @Override
@@ -125,17 +126,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public void losuj(ArrayList<ImageView> kasa, CountDownTimer countDownTimer1){
         int losowakasa = losowa.nextInt(9);
-        int losowy = losowa.nextInt(4);
+        int losowy = losowa.nextInt(2);
 
         for (int i = 0; i < kasa.size(); i++) {
-            kasa.get(i).setVisibility(VISIBLE);
+            kasa.get(i).setVisibility(INVISIBLE);
         }
         if(losowy==0){
-            kasa.set(losowakasa).setImageResource(R.drawable.zlodziej);
+            kasa.get(losowakasa).setImageResource(R.drawable.zlodziej);
             bad = true;
         }
         else{
-            kasa.set(losowakasa).setImageResource(R.drawable.money);
+            kasa.get(losowakasa).setImageResource(R.drawable.money);
             bad= false;
 
         }
