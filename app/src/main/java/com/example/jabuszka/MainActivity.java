@@ -1,5 +1,9 @@
 package com.example.jabuszka;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
+import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -19,8 +23,9 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     CountDownTimer countDownTimer;
     int czas = 16;
-    int punkty = 0;
+    int punkty1 = 0;
     Random losowa = new Random();
+    boolean bad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        CountDownTimer countDownTimer1 = new CountDownTimer(1000,1000) {
+        CountDownTimer countDownTimer1 = new CountDownTimer(1000, 1000) {
             @Override
             public void onFinish() {
-
+                losuj(kasa, this);
             }
 
             @Override
@@ -64,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
+
         button.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -74,6 +80,12 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onFinish() {
                                 countDownTimer1.cancel();
+
+                                for(int i = 0; i<kasa.size(); i++){
+                                    kasa.get(i).setVisibility(INVISIBLE);
+                                }
+
+                                this.cancel();
                             }
 
                             @Override
@@ -87,5 +99,48 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+        for (int i = 0; i < kasa.size(); i++) {
+            kasa.get(i).setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if(bad){
+                                losuj(kasa, countDownTimer1);
+                                punkty1--;
+                                punkty.setText(String.valueOf(punkty1));
+
+
+                            }
+                            else{
+                                losuj(kasa,countDownTimer1);
+                                punkty1++;
+                                punkty.setText(String.valueOf(punkty1));
+                            }
+                        }
+                    }
+            );
+
+        }
+
+    }
+    public void losuj(ArrayList<ImageView> kasa, CountDownTimer countDownTimer1){
+        int losowakasa = losowa.nextInt(9);
+        int losowy = losowa.nextInt(4);
+
+        for (int i = 0; i < kasa.size(); i++) {
+            kasa.get(i).setVisibility(VISIBLE);
+        }
+        if(losowy==0){
+            kasa.set(losowakasa).setImageResource(R.drawable.zlodziej);
+            bad = true;
+        }
+        else{
+            kasa.set(losowakasa).setImageResource(R.drawable.money);
+            bad= false;
+
+        }
+        kasa.get(losowakasa).setVisibility(VISIBLE);
+        countDownTimer1.cancel();
+        countDownTimer1.start();
     }
 }
